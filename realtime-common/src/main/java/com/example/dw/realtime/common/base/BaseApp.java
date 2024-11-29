@@ -20,7 +20,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
  */
 public abstract class BaseApp {
     /**
-     * @param port         WebUI端口
+     * @param port         WebUI端口  DIM10001 DWD10011 DWS10021
      * @param parallelism  并行度
      * @param ckAndGroupId checkPoint和消费者组id
      * @param topic        kafka主题

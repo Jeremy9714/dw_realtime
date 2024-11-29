@@ -8,6 +8,7 @@ import org.apache.flink.api.common.serialization.DeserializationSchema;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -25,6 +26,8 @@ public class FlinkSourceUtils {
                 .setBootstrapServers(DwConstant.KAFKA_BROKERS)
                 .setTopics(topic)
                 .setGroupId(groupId)
+//                // 消费提交数据 实现精准一次
+//                .setProperty(ConsumerConfig.ISOLATION_LEVEL_CONFIG, "read_committed")
 //                .setStartingOffsets(OffsetsInitializer.committedOffsets(OffsetsInitializer.latest()))
                 .setStartingOffsets(OffsetsInitializer.latest())
 //                .setValueOnlyDeserializer(new SimpleStringSchema()) // 消息为空会报错
@@ -68,7 +71,7 @@ public class FlinkSourceUtils {
                 .startupOptions(StartupOptions.initial())
                 .jdbcProperties(props)
                 .build();
-        
+
         return mySqlSource;
     }
 }
