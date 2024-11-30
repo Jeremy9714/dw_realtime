@@ -14,7 +14,7 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
  */
 public class DwdInteractionCommentInfo extends BaseSQLApp {
     public static void main(String[] args) {
-        new DwdInteractionCommentInfo().start(10011, 4, "dwd_interaction_comment_info");
+        new DwdInteractionCommentInfo().start(10012, 4, "dwd_interaction_comment_info");
     }
 
     public void handle(StreamExecutionEnvironment env, StreamTableEnvironment tableEnv) {
