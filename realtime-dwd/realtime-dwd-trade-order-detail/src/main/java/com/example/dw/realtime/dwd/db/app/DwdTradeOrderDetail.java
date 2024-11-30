@@ -1,4 +1,4 @@
-package com.example.dw.realtime.db.app;
+package com.example.dw.realtime.dwd.db.app;
 
 import com.example.dw.realtime.common.base.BaseSQLApp;
 import com.example.dw.realtime.common.constant.DwConstant;
