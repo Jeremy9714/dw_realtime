@@ -11,8 +11,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.functions.RichMapFunction;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
+import org.apache.flink.api.common.state.StateTtlConfig;
 import org.apache.flink.api.common.state.ValueState;
 import org.apache.flink.api.common.state.ValueStateDescriptor;
+import org.apache.flink.api.common.time.Time;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.connector.base.DeliveryGuarantee;
 import org.apache.flink.connector.kafka.sink.KafkaRecordSerializationSchema;
@@ -182,12 +184,17 @@ public class DwdBaseLog extends BaseApp {
             @Override
             public void open(Configuration parameters) throws Exception {
                 ValueStateDescriptor<String> valueStateDescriptor = new ValueStateDescriptor<>("lastVisitTimeState", String.class);
+                // 状态ttl设置
+                valueStateDescriptor.enableTimeToLive(StateTtlConfig.newBuilder(Time.seconds(10))
+                        // 创建或写入时更新ttl
+                        .setUpdateType(StateTtlConfig.UpdateType.OnCreateAndWrite)
+                        .build());
                 this.lastVisitTimeState = getRuntimeContext().getState(valueStateDescriptor);
             }
 
             @Override
             public JSONObject map(JSONObject jsonObj) throws Exception {
-
+                // 获取is_new
                 String isNew = jsonObj.getJSONObject("common").getString("is_new");
                 String lastVisitTime = lastVisitTimeState.value();
                 Long ts = jsonObj.getLong("ts");

@@ -38,20 +38,20 @@ public abstract class BaseApp {
         // TODO 检查点相关的设置
         // 2.1 开启检查点
         env.enableCheckpointing(5000L, CheckpointingMode.EXACTLY_ONCE);
-        // 2.2 设置检查点超时时间
-        env.getCheckpointConfig().setCheckpointTimeout(60000L);
-        // 2.3 设置job失效后检查点是否保留
-        env.getCheckpointConfig().setExternalizedCheckpointCleanup(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
-        // 2.4 设置两个检查点之间最小时间间隔
-        env.getCheckpointConfig().setMinPauseBetweenCheckpoints(2000L);
-        // 2.5 设置重启策略
-//        env.setRestartStrategy(RestartStrategies.fixedDelayRestart(3, 3000L));
-        env.setRestartStrategy(RestartStrategies.failureRateRestart(3, Time.days(30L), Time.seconds(3L)));
-        // 2.6 设置状态后端以及检查点存储路径
-        env.setStateBackend(new HashMapStateBackend());
-        env.getCheckpointConfig().setCheckpointStorage("hdfs://hadoop212:8020/ck/" + ckAndGroupId);
-        // 2.7 设置操作hadoop的用户
-        System.setProperty("HADOOP_USER_NAME", "jeremy");
+//        // 2.2 设置检查点超时时间
+//        env.getCheckpointConfig().setCheckpointTimeout(60000L);
+//        // 2.3 设置job失效后检查点是否保留
+//        env.getCheckpointConfig().setExternalizedCheckpointCleanup(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
+//        // 2.4 设置两个检查点之间最小时间间隔
+//        env.getCheckpointConfig().setMinPauseBetweenCheckpoints(2000L);
+//        // 2.5 设置重启策略
+////        env.setRestartStrategy(RestartStrategies.fixedDelayRestart(3, 3000L));
+//        env.setRestartStrategy(RestartStrategies.failureRateRestart(3, Time.days(30L), Time.seconds(3L)));
+//        // 2.6 设置状态后端以及检查点存储路径
+//        env.setStateBackend(new HashMapStateBackend());
+//        env.getCheckpointConfig().setCheckpointStorage("hdfs://hadoop212:8020/ck/" + ckAndGroupId);
+//        // 2.7 设置操作hadoop的用户
+//        System.setProperty("HADOOP_USER_NAME", "jeremy");
 
         // TODO 从kafka的topic-db中消费业务数据
         // 3.1 声明消费的主题及消费者组
