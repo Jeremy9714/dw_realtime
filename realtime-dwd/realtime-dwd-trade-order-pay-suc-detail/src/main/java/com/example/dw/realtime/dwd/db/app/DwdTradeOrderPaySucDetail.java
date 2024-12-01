@@ -94,7 +94,7 @@ public class DwdTradeOrderPaySucDetail extends BaseSQLApp {
                         "on pi.order_id=od.order_id " +
                         "and od.et >= pi.et - interval '30' minute " + // 支付时间30分钟
                         "and od.et <= pi.et + interval '5' second " + // 延迟时间5秒
-                        "join base_dic for system_time as of pi.pt as dic " +
+                        "join base_dic for system_time as of pi.pt as dic " + // lookup join
                         "on pi.payment_type=dic.dic_code ");
 //        result.execute().print();
 
