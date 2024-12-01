@@ -24,7 +24,7 @@ public class Test03_Demo {
                 " empNo string,\n" +
                 " empName string,\n" +
                 " deptNo string,\n" +
-                " proc_time as proctime()\n" +
+                " pt as proctime()\n" +
                 ") with (\n" +
                 " 'connector' = 'kafka',\n" +
                 " 'topic' = 'test1',\n" +
@@ -60,7 +60,7 @@ public class Test03_Demo {
         // 左表驱动，当左表数据到来时，发送请求与右表进行关联
         Table joinedTable = tableEnv.sqlQuery("select e.empNo, e.empName, d.deptNo, d.dname\n" +
                 " from emp as e\n" +
-                "   join dept for system_time as of e.proc_time as d\n" +
+                "   join dept for system_time as of e.pt as d\n" +
                 "     on e.deptNo = d.deptNo");
 //        joinedTable.execute().print();
 

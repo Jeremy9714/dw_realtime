@@ -31,7 +31,7 @@ public class DwdInteractionCommentInfo extends BaseSQLApp {
                 " `data`['appraise'] appraise, \n" +
                 " `data`['comment_txt'] comment_txt, \n" +
                 " `ts`, \n" +
-                " proc_time\n" +
+                " pt\n" +
                 " from topic_db where `table` = 'comment_info' and `type` = 'insert'");
 //        commentInfo.execute().print();
         tableEnv.createTemporaryView("comment_info", commentInfo);
@@ -49,7 +49,7 @@ public class DwdInteractionCommentInfo extends BaseSQLApp {
                 "   comment_txt,\n" +
                 "   ts\n" +
                 "from comment_info as c\n" +
-                "   join base_dic for system_time as of c.proc_time as dic\n" +
+                "   join base_dic for system_time as of c.pt as dic\n" +
                 "     on c.appraise = dic.dic_code");
 //        joinedTable.execute().print();
 

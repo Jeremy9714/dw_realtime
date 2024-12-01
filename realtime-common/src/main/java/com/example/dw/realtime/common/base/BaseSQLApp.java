@@ -66,7 +66,9 @@ public abstract class BaseSQLApp {
                 " `ts` bigint,\n" +
                 " `data` MAP<string,string>,\n" +
                 " `old` MAP<string,string>,\n" +
-                " proc_time as proctime()\n" +
+                " pt as proctime(),\n" +
+                " et as to_timestamp_ltz(ts,0),\n" +
+                " watermark for et as et - interval '3' second \n" +
                 ") " + SQLUtils.getKafkaDDL(DwConstant.TOPIC_DB, groupId));
 //        tableEnv.executeSql("select * from topic_db").print();
     }
