@@ -11,6 +11,9 @@ public class DwConstant {
     public static final String TOPIC_DB = "topic-db";
     public static final String TOPIC_LOG = "topic-log";
 
+    public static final String DORIS_FENODES = "hadoop212:7030";
+    public static final String DORIS_DATABASE = "dw_realtime";
+
     public static final String MYSQL_HOST = "hadoop212";
     public static final int MYSQL_PORT = 3306;
     public static final String MYSQL_USER_NAME = "root";
@@ -39,5 +42,7 @@ public class DwConstant {
     public static final String TOPIC_DWD_TRADE_REFUND_PAYMENT_SUCCESS = "dwd-trade-refund-payment-success";
 
     public static final String TOPIC_DWD_USER_REGISTER = "dwd-user-register";
+
+    public static final String TOPIC_DWS_TRAFFIC_SOURCE_KEYWORD_PAGE_VIEW_WINDOW = "dws-traffic-source-keyword-page-view-window";
 
 }
