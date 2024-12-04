@@ -23,7 +23,6 @@ import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.api.functions.ProcessFunction;
 import org.apache.flink.streaming.api.functions.windowing.WindowFunction;
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
@@ -40,7 +39,7 @@ import java.time.Duration;
 public class DwsTrafficVcChArIsNewPageViewWindow extends BaseApp {
 
     public static void main(String[] args) throws Exception {
-        new DwsTrafficVcChArIsNewPageViewWindow().start(10022, 4, DwConstant.TOPIC_DWS_TRAFFIC_VC_CH_AR_IS_NEW_PAGE_VIEW_WINDOW, DwConstant.TOPIC_LOG);
+        new DwsTrafficVcChArIsNewPageViewWindow().start(10022, 4, DwConstant.TOPIC_DWS_TRAFFIC_VC_CH_AR_IS_NEW_PAGE_VIEW_WINDOW, DwConstant.TOPIC_DWD_TRAFFIC_PAGE);
     }
 
     @Override
@@ -48,15 +47,7 @@ public class DwsTrafficVcChArIsNewPageViewWindow extends BaseApp {
 //        env.setRestartStrategy(RestartStrategies.fixedDelayRestart(3, 3000L));
 
         // TODO 对流中数据进行转换 jsonStr->jsonObj
-        SingleOutputStreamOperator<JSONObject> jsonObjDS = kafkaStrDS.process(new ProcessFunction<String, JSONObject>() {
-            @Override
-            public void processElement(String value, Context ctx, Collector<JSONObject> out) throws Exception {
-                JSONObject jsonObject = JSON.parseObject(value);
-                if (jsonObject.containsKey("page")) {
-                    out.collect(jsonObject);
-                }
-            }
-        });
+        SingleOutputStreamOperator<JSONObject> jsonObjDS = kafkaStrDS.map(JSON::parseObject);
 
         // TODO 按照mid对数据进行分组
         KeyedStream<JSONObject, String> keyedDS = jsonObjDS.keyBy(jsonObj -> jsonObj.getJSONObject("common").getString("mid"));
