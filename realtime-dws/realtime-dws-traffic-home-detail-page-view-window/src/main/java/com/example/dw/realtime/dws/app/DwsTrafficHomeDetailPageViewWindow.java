@@ -37,7 +37,7 @@ import java.time.Duration;
 public class DwsTrafficHomeDetailPageViewWindow extends BaseApp {
 
     public static void main(String[] args) throws Exception {
-        new DwsTrafficHomeDetailPageViewWindow().start(10023, 4, DwConstant.TOPIC_DWS_TRAFFIC_HOME_DETAIL_PAGE_VIEW_WINDOW, DwConstant.TOPIC_DWD_TRAFFIC_PAGE);
+        new DwsTrafficHomeDetailPageViewWindow().start(10023, 4, "dws-traffic-home-detail-page-view-window", DwConstant.TOPIC_DWD_TRAFFIC_PAGE);
     }
 
     @Override

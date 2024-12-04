@@ -32,7 +32,7 @@ public class DwsTrafficSourceKeywordPageViewWindow extends BaseSQLApp {
                 "   ts bigint,\n" +
                 "   et as to_timestamp_ltz(ts,3),\n" +
                 "   watermark for et as et\n" +
-                " )" + SQLUtils.getKafkaDDL(DwConstant.TOPIC_DWD_TRAFFIC_PAGE, DwConstant.TOPIC_DWS_TRAFFIC_SOURCE_KEYWORD_PAGE_VIEW_WINDOW));
+                " )" + SQLUtils.getKafkaDDL(DwConstant.TOPIC_DWD_TRAFFIC_PAGE, "dws-traffic-source-keyword-page-view-window"));
 //        tableEnv.executeSql("select * from page_log").print();
 
         // TODO 过滤出搜索行为 - last_page_id=''

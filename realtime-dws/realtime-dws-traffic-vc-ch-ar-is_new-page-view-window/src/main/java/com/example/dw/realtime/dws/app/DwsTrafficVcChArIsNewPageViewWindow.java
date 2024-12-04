@@ -39,7 +39,7 @@ import java.time.Duration;
 public class DwsTrafficVcChArIsNewPageViewWindow extends BaseApp {
 
     public static void main(String[] args) throws Exception {
-        new DwsTrafficVcChArIsNewPageViewWindow().start(10022, 4, DwConstant.TOPIC_DWS_TRAFFIC_VC_CH_AR_IS_NEW_PAGE_VIEW_WINDOW, DwConstant.TOPIC_DWD_TRAFFIC_PAGE);
+        new DwsTrafficVcChArIsNewPageViewWindow().start(10022, 4, "dws-traffic-vc-ch-ar-is-new-page-view-window", DwConstant.TOPIC_DWD_TRAFFIC_PAGE);
     }
 
     @Override

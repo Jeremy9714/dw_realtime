@@ -37,7 +37,7 @@ import java.time.Duration;
 public class DwsUserUserLoginWindow extends BaseApp {
 
     public static void main(String[] args) throws Exception {
-        new DwsUserUserLoginWindow().start(10024, 4, DwConstant.TOPIC_DWS_USER_USER_LOGIN_WINDOW, DwConstant.TOPIC_DWD_TRAFFIC_PAGE);
+        new DwsUserUserLoginWindow().start(10024, 4, "dws-user-user-login-window", DwConstant.TOPIC_DWD_TRAFFIC_PAGE);
     }
 
     @Override
