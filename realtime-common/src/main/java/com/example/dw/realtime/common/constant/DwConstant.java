@@ -46,5 +46,6 @@ public class DwConstant {
     public static final String TOPIC_DWS_TRAFFIC_SOURCE_KEYWORD_PAGE_VIEW_WINDOW = "dws-traffic-source-keyword-page-view-window";
     public static final String TOPIC_DWS_TRAFFIC_VC_CH_AR_IS_NEW_PAGE_VIEW_WINDOW = "dws-traffic-vc-ch-ar-is-new-page-view-window";
     public static final String TOPIC_DWS_TRAFFIC_HOME_DETAIL_PAGE_VIEW_WINDOW = "dws-traffic-home-detail-page-view-window";
+    public static final String TOPIC_DWS_USER_USER_LOGIN_WINDOW = "dws-user-user-login-window";
 
 }
