@@ -71,7 +71,7 @@ public class DwsTradeSkuOrderWindow extends BaseApp {
         });
 //        jsonObjDS.print();
 
-        // TODO 按照唯一键(sku_id)进行分组
+        // TODO 按照唯一键(订单明细id)进行分组
         KeyedStream<JSONObject, String> keyedDS = jsonObjDS.keyBy(jsonObj -> jsonObj.getString("id"));
 
         // TODO 去重
